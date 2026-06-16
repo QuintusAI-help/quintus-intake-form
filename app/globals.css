@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: #0D1B2A;
+  color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(201, 168, 76, 0.2);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #C9A84C !important;
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.08);
+}
+
+input, textarea {
+  -webkit-appearance: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ── Palace background ── */
+.palace-bg {
+  background-image: url('/palace-bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* ── Mobile background redesign ──
+   On desktop the palace fills the screen with horizontal + radial overlays.
+   On mobile we anchor the image to the top, then fade it vertically into the
+   dark navy so the form area below reads cleanly. The desktop overlays are
+   suppressed — a single vertical gradient does the job instead.
+*/
+@media (max-width: 640px) {
+  .palace-bg {
+    background-size: cover;
+    background-position: center top;
+  }
+
+  /* Replace horizontal dimming with a vertical fade to dark */
+  .overlay-sides {
+    background: linear-gradient(
+      to bottom,
+      rgba(13, 27, 42, 0.35) 0%,
+      rgba(13, 27, 42, 0.75) 30%,
+      rgba(13, 27, 42, 0.97) 58%,
+      #0D1B2A 72%
+    ) !important;
+  }
+
+  /* Radial arch overlay not meaningful on mobile — hide it */
+  .overlay-center {
+    display: none;
+  }
+}
+
+/* ── Liquid gold progress fill ── */
+.liquid-gold-fill {
+  background: linear-gradient(
+    90deg,
+    #7a5c18 0%,
+    #c9a84c 18%,
+    #f0d060 32%,
+    #c9a84c 46%,
+    #9a7228 60%,
+    #e8c040 74%,
+    #c9a84c 88%,
+    #f0d060 100%
+  );
+  background-size: 250% 100%;
+  animation: liquid-gold 2.8s ease-in-out infinite;
+}
+
+@keyframes liquid-gold {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* ── Gladiator running legs ── */
+@keyframes leg-a {
+  0%, 100% { transform: rotate(30deg); }
+  50%       { transform: rotate(-30deg); }
+}
+@keyframes leg-b {
+  0%, 100% { transform: rotate(-30deg); }
+  50%       { transform: rotate(30deg); }
+}
+.leg-a {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: leg-a 0.28s ease-in-out infinite;
+}
+.leg-b {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+  animation: leg-b 0.28s ease-in-out infinite;
+}
+
+/* ── Treasure chest celebration ── */
+@keyframes chest-celebrate {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  30%       { transform: scale(1.2) rotate(-6deg); }
+  70%       { transform: scale(1.2) rotate(6deg); }
+}
+.chest-celebrate {
+  animation: chest-celebrate 0.45s ease-in-out infinite;
+  display: inline-block;
+}
+
